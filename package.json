@@ -6,13 +6,22 @@
     "dev": "nuxt",
     "build": "nuxt build",
     "start": "nuxt start",
-    "generate": "nuxt generate"
+    "generate": "nuxt generate",
+    "heroku-prebuild": "echo This runs before Heroku installs dependencies.",
+    "heroku-postbuild": "echo This runs after Heroku installs dependencies, but before Heroku prunes and caches dependencies.",
+    "heroku-cleanup": "echo This runs after Heroku prunes and caches dependencies."
   },
   "dependencies": {
     "core-js": "^3.9.1",
+    "heroku": "^7.53.1",
     "nuxt": "^2.15.3"
   },
   "devDependencies": {
     "@nuxtjs/vuetify": "^1.11.3"
+  },
+  "engines": {
+    "name": "recipies",
+    "description": "recipie text detection",
+    "version": "1.0.0"
   }
 }
