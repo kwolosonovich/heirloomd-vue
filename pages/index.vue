@@ -13,16 +13,16 @@
         <logo />
       </v-col>
     </v-row>
-    <Inspire 
-      :images='imageList'
-    />
+    <Inspire />
+    <Create />
   </div>
 </template>
 
 <script>
 
 import Logo from "@/components/logo"
-import Inspire from '@/components/inspire.vue'
+import Inspire from '@/components/Inspire.vue'
+import Create from '@/components/Create.vue'
 
 export default {
   name: 'HomePage',
@@ -30,7 +30,8 @@ export default {
   },
   components: {
     Logo,
-    Inspire
+    Inspire,
+    Create
   }
 }
 </script>

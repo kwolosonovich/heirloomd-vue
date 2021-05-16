@@ -1,6 +1,17 @@
+/* inspire */
 .imageStyle {
   width: 250px;
   max-height: auto;
   margin: 4px;
-  border-radius: 25px;
+  border-radius: 20px;
+}
+
+/* create */
+.createContainer {
+  border-radius: 20px;
+  color: lightGrey
+}
+
+.lightText {
+  color: lightGrey
 }
