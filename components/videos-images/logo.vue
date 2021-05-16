@@ -11,10 +11,4 @@
   height: auto;
   width: 100%;
 }
-
-@keyframes turn {
-  100% {
-    transform: rotateY(0deg);
-  }
-}
 </style>

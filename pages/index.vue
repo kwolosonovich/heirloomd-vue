@@ -20,7 +20,7 @@
 
 <script>
 
-import Logo from "@/components/logo"
+import Logo from "@/components/videos-images/logo"
 import Inspire from '@/components/Inspire.vue'
 import Create from '@/components/Create.vue'
 

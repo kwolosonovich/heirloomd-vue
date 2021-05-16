@@ -1,39 +1,35 @@
 <template>
   <v-container class='mt-10 secondary createContainer'>
-    <v-row class="d-flex justify-space-between">
-      <v-col cols="12" lg="4" sm="6">
-        <v-file-input
-          class="ma-12t"
-          v-model="files"
-          label="Add Photo"
-          multiple
-          prepend-icon="mdi-paperclip"
-          >
-            <template v-slot:selection="{ text }">
-            <v-chip
-              small
-              label
-            >
-              {{ text }}
-            </v-chip>
-            </template>
-          </v-file-input>
-        <btn block lightGrey>
-          Create
-        </btn>
-      </v-col>
-      <v-col cols="12" lg="8" sm="6">
-        <div class="text-h4 text-center ma-12">
-          Upload a picture to <v-spacer /> create a recipe card
-        </div>
-      </v-col>
+    <v-row class="d-flex align-conent-center my-8 mx-5">
+      <v-card color="secondary" elevation="0" width="100%">
+        <v-card-title class="lightGrey--text text-h2">
+          Get Started
+        </v-card-title>
+        <v-card-text class="text-h5 font-weight-light text-left lightGrey--text mt-2">
+          Snap a picture of a hand-written recipe <br>
+          Design and customize your recipe <br>
+          Add to your recipe card gallery, download, and share! 
+        </v-card-text>
+        <v-card-actions class="mt-6" width="100">
+          <v-btn outlined color="lightGrey" class="btnPair">
+            Examples
+          </v-btn>
+          <v-btn color="lightGrey" class="btnPair">
+            Create
+          </v-btn>
+        </v-card-actions>
+      </v-card>
     </v-row>
   </v-container>
 </template>
 
 <script>
+import CameraVideo from '@/components/videos-images/camera'
 
 export default {
   name: "Create",
+  components: {
+    CameraVideo
+  }
 }
 </script>
