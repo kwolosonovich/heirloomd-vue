@@ -1,6 +1,7 @@
 <template>
-  <v-app dark>
+  <v-app>
     <v-navigation-drawer
+      color="lightGrey"
       v-model="drawer"
       :mini-variant="miniVariant"
       :clipped="clipped"
@@ -25,6 +26,8 @@
       </v-list>
     </v-navigation-drawer>
     <v-app-bar
+      color="lightGrey"
+      flat
       :clipped-left="clipped"
       fixed
       app
@@ -33,12 +36,13 @@
       <v-toolbar-title v-text="title" />
       <v-spacer />
     </v-app-bar>
-    <v-main>
+    <v-main class="main-style" >
       <v-container>
         <nuxt />
       </v-container>
     </v-main>
     <v-footer
+      color="lightGrey"
       :absolute="!fixed"
       app
     >
@@ -48,6 +52,9 @@
 </template>
 
 <script>
+
+// import styles from '~vuetify/src/stylus/theme.styl'
+
 export default {
   data () {
     return {
@@ -69,8 +76,16 @@ export default {
       miniVariant: false,
       right: true,
       rightDrawer: false,
-      title: 'Recipie App'
+      title: 'Heirloomd'
     }
   }
 }
 </script>
+
+<style scoped>
+#app .main-style {
+  width: 100%;
+  height: 100%;
+  background-color: #f3f4f6
+}
+</style>

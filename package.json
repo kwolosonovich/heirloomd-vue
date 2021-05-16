@@ -1,5 +1,5 @@
 {
-  "name": "recipies",
+  "name": "heirloom",
   "version": "1.0.0",
   "private": true,
   "scripts": {
@@ -20,8 +20,8 @@
     "@nuxtjs/vuetify": "^1.11.3"
   },
   "engines": {
-    "name": "recipies",
-    "description": "recipie text detection",
+    "name": "heirloom",
+    "description": "recipe text detection",
     "version": "1.0.0"
   }
 }
