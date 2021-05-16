@@ -83,7 +83,7 @@ export default {
 </script>
 
 <style scoped>
-#app .main-style {
+.main-style {
   width: 100%;
   height: 100%;
   background-color: #f3f4f6
