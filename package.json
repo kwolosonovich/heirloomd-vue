@@ -20,8 +20,7 @@
     "@nuxtjs/vuetify": "^1.11.3"
   },
   "engines": {
-    "name": "heirloomd",
-    "description": "recipe text detection",
-    "version": "1.0.0"
+    "node": "15.9.0",
+    "yarn": "1.x"
   }
 }
