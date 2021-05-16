@@ -1,4 +1,4 @@
-# recipies
+# recipes
 
 ## Build Setup
 
