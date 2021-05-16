@@ -1,5 +1,3 @@
-// import colors from 'vuetify/es5/util/colors'
-
 export default {
   // Global page headers: https://go.nuxtjs.dev/config-head
   head: {
@@ -54,10 +52,6 @@ export default {
           accentRed: '#661615',
           secondary: '#081e30',
           lightGrey: '#f3f4f6',
-          info: colors.teal.lighten1,
-          warning: colors.amber.base,
-          error: colors.deepOrange.accent4,
-          success: colors.green.accent3
         }
       }
     }
