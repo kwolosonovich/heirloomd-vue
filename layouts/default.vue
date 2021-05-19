@@ -37,7 +37,7 @@
       <v-spacer />
     </v-app-bar>
     <v-main class="main-style" >
-      <v-container>
+      <v-container class="mt-0 pt-0">
         <nuxt />
       </v-container>
     </v-main>
