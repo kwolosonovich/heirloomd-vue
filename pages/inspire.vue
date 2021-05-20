@@ -2,18 +2,16 @@
   <span>
     <v-row
       justify="center" 
-      align="center" 
       no-gutters
-      class="d-flex flex-wrap-reverse"
-      style="max-height: 400px"
+      class="d-flex flex-wrap-reverse mx-auto"
     >
-      <v-col cols="12" lg="" sm="6" class="text-center">
+      <v-col cols="12" lg="4" md="3" class="text-center mx-auto">
         <div class="text-h3 font-weight-thin">Create.
           <v-spacer class="mb-3"/> Share.
           <v-spacer class="mb-3"/> Enjoy.
         </div>
       </v-col>
-      <v-col cols="12" lg="" sm="6" class="text-center">
+      <v-col cols="12" lg="8" md="9" class="text-center">
         <logo />
       </v-col>
     </v-row>

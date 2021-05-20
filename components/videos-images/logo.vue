@@ -9,10 +9,10 @@
 <style>
 .VuetifyLogo {
   height: auto;
-  /* width: 100%; */
-  max-width: 500px;
+  max-width: 400px;
+  min-width: 300px;
   padding: 0;
   margin: 0;
-  z-index: -1
+  z-index: -3
 }
 </style>

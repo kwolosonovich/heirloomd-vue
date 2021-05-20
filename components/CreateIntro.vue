@@ -1,7 +1,7 @@
 <template>
-  <v-container class='mt-15 secondary createContainer'>
+  <v-container class='mt-15 secondary createContainer mx-auto'>
     <v-row class="d-flex align-conent-center my-8 mx-15">
-      <v-card color="secondary" elevation="0" width="100%">
+      <v-card color="secondary" width="100%">
         <v-card-title class="lightGrey--text text-h2">
           Get Started
         </v-card-title>
