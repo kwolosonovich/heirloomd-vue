@@ -1,0 +1,23 @@
+<template>
+  <v-row class="ma-10">
+    <v-col class="text-center mx-auto">
+      <div class="text-h3 font-weight-thin mx-auto">
+        Create a Recipe
+      </div>
+    </v-col>
+    <Create />
+  </v-row>
+</template>
+
+<script>
+import Create from '@/components/create/Create'
+
+export default {
+  name: 'CreatePage',
+  props: {
+  },
+  components: {
+    Create
+  }
+}
+</script>

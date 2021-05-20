@@ -1,7 +1,7 @@
 <template>
   <div>
       <div class="text-h4 text-center mb-12">Inspire Your Friends and Family</div>
-    <v-row class="d-flex justify-space-around">
+    <v-row class="d-flex justify-space-around mt-4">
       <img class="imageStyle d-none d-sm-block" src="/inspire1.jpg" />
       <img class="imageStyle d-none d-sm-block" src="/inspire3.jpg" />
       <img class="imageStyle d-none d-md-block" src="/inspire5.jpg" />

@@ -53,8 +53,6 @@
 
 <script>
 
-// import styles from '~vuetify/src/stylus/theme.styl'
-
 export default {
   data () {
     return {
@@ -65,12 +63,12 @@ export default {
         {
           icon: 'mdi-apps',
           title: 'Welcome',
-          to: '/'
+          to: '/inspire'
         },
         {
           icon: 'mdi-chart-bubble',
-          title: 'Inspire',
-          to: '/inspire'
+          title: 'Create',
+          to: '/create'
         }
       ],
       miniVariant: false,

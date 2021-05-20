@@ -6,7 +6,7 @@
   border-radius: 20px;
 }
 
-/* create */
+/* createIntro */
 .createContainer {
   border-radius: 20px;
   color: lightGrey
@@ -22,7 +22,17 @@
   color: lightGrey
 }
 
+/* create */
+.mainCard {
+  max-width: 60%;
+  border-radius: 20%;
+}
+.number {
+  height: 20%;
+}
+
 /* buttons */
 .btnPair {
-  width: 50%;
+  width: 60%;
+  margin: 0px 10px;
 }
