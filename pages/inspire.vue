@@ -5,7 +5,7 @@
       no-gutters
       class="d-flex flex-wrap-reverse mx-auto"
     >
-      <v-col cols="12" lg="4" md="3" class="text-center mx-auto">
+      <v-col cols="12" lg="4" md="3" class="text-center mx-auto my-auto">
         <div class="text-h3 font-weight-thin">Create.
           <v-spacer class="mb-3"/> Share.
           <v-spacer class="mb-3"/> Enjoy.
