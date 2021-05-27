@@ -12,39 +12,41 @@
         </v-list-item>
         <v-list-item class="mx-15">
           <v-card flat>
-            <v-card-text class="px-5">
-              <v-row>
-                <v-col cols="12">
-                  <v-text-field label="Name of Dish" class="mt-0 pt-0"></v-text-field>
-                </v-col>
-                <v-col class="12" sm="6" lg="6">
-                  <v-text-field label="Includes Ingredients" class="mt-0 pt-0"></v-text-field>
-                </v-col>
-                <v-col class="12" sm="6" lg="6">
-                  <v-text-field label="Excludes Ingredients" class="mt-0 pt-0"></v-text-field>
-                </v-col>
-                <v-col class="12" sm="6" lg="6">
-                  <v-select :items="getCuisines()" label="Cuisine" class="mt-0 pt-0"></v-select>
-                </v-col>
-                <v-col class="12" sm="6" lg="6">
-                  <v-select :items="getTypes()" label="Meal Type" class="mt-0 pt-0"></v-select>
-                </v-col>
-                <v-col class="12" sm="6" lg="6">
-                  <v-select :items="getDiets()" label="Diet" class="mt-0 pt-0"></v-select>
-                </v-col>
-                <v-col class="12" sm="6" lg="6">
-                  <v-select :items="getIntolerances()" label="Intolerances" class="mt-0 pt-0"></v-select>
-                </v-col>
-              </v-row>
-            </v-card-text>
-            <div class="mx-4">
-              <v-btn outlined color="primary" class="btnPair">
-                Reset
-              </v-btn>
-              <v-btn color="primary" class="btnPair">
-                Search
-              </v-btn>
-            </div>
+            <v-form ref="form">
+              <v-card-text class="px-5">
+                <v-row>
+                  <v-col cols="12">
+                    <v-text-field label="Name of Dish" class="mt-0 pt-0"></v-text-field>
+                  </v-col>
+                  <v-col class="12" sm="6" lg="6">
+                    <v-text-field label="Includes Ingredients" class="mt-0 pt-0"></v-text-field>
+                  </v-col>
+                  <v-col class="12" sm="6" lg="6">
+                    <v-text-field label="Excludes Ingredients" class="mt-0 pt-0"></v-text-field>
+                  </v-col>
+                  <v-col class="12" sm="6" lg="6">
+                    <v-select :items="getCuisines()" label="Cuisine" class="mt-0 pt-0"></v-select>
+                  </v-col>
+                  <v-col class="12" sm="6" lg="6">
+                    <v-select :items="getTypes()" label="Meal Type" class="mt-0 pt-0"></v-select>
+                  </v-col>
+                  <v-col class="12" sm="6" lg="6">
+                    <v-select :items="getDiets()" label="Diet" class="mt-0 pt-0"></v-select>
+                  </v-col>
+                  <v-col class="12" sm="6" lg="6">
+                    <v-select :items="getIntolerances()" label="Intolerances" class="mt-0 pt-0"></v-select>
+                  </v-col>
+                </v-row>
+              </v-card-text>
+              <div class="mx-4">
+                <v-btn outlined color="primary" class="btnPair" @click="resetForm">
+                  Reset
+                </v-btn>
+                <v-btn color="primary" class="btnPair">
+                  Search
+                </v-btn>
+              </div>
+            </v-form>
           </v-card>
         </v-list-item>
         <v-list-item class="ma-10">
@@ -95,8 +97,10 @@ export default {
     },
     getIntolerances () {
       return searchOptions.intolerance
+    },
+    resetForm() {
+      this.$ref.form.reset()
     }
-
   }
 }
 </script>
