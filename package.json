@@ -8,7 +8,7 @@
     "start": "nuxt start",
     "generate": "nuxt generate",
     "heroku-prebuild": "echo This runs before Heroku installs dependencies.",
-    "heroku-postbuild": "echo This runs after Heroku installs dependencies, but before Heroku prunes and caches dependencies.",
+    "heroku-postbuild": "npm run build",
     "heroku-cleanup": "echo This runs after Heroku prunes and caches dependencies."
   },
   "dependencies": {
