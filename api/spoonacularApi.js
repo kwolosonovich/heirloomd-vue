@@ -1,21 +1,15 @@
-import qs from 'querystring';
 import spoonacularApiClient from './clients/spoonacularApiClient'
 
+const apiKey = process.env.spoonacularAPIKey;
+
 export default {
-  getRecipes() {
-    let data = {
-      format: 'json',
-    },
-    data = qs.stringify(data);
-    data = decodeURIComponent(data);
-    const config = {
-      method: 'post',
-      headers: {
-        // accept: '*/*',
-        'content-type': 'application/x-www-form-urlencoded',
-      },
-      data,
-    };
-    return spoonacularApiClient(config);
+  getRecipes(params) {
+    params.apiKey = apiKey
+    return spoonacularApiClient.request({
+      method: 'get',
+      url: '/recipes/complexSearch',
+      headers: { 'Content-Type': 'application/json' },
+      params: params
+    })
   }
 }

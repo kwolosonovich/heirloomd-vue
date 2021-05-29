@@ -1,8 +1,9 @@
 import axios from 'axios';
 
-const spoonacularRootApi = process.env.spoonacularAPIKey; 
+const spoonacularRootUrl = process.env.spoonacularRootUrl;
+
 const spoonacularApiClient = axios.create({
-  baseURL: spoonacularRootApi,
+  baseURL: spoonacularRootUrl,
   validateStatus(status) {
     return status != 403 || status != 401 | status != 500;
   },

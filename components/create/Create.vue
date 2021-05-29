@@ -18,29 +18,32 @@
                   <v-text-field label="Name of Dish" class="mt-0 pt-0"></v-text-field>
                 </v-col>
                 <v-col class="12" sm="6" lg="6">
-                  <v-text-field label="Includes Ingredients" class="mt-0 pt-0"></v-text-field>
+                  <v-text-field v-model="includedIngredients" label="Includes Ingredients" class="mt-0 pt-0"></v-text-field>
                 </v-col>
                 <v-col class="12" sm="6" lg="6">
-                  <v-text-field label="Excludes Ingredients" class="mt-0 pt-0"></v-text-field>
+                  <v-text-field v-model="excludedIngredients" label="Excludes Ingredients" class="mt-0 pt-0"></v-text-field>
                 </v-col>
                 <v-col class="12" sm="6" lg="6">
-                  <v-select :items="getCuisines()" label="Cuisine" class="mt-0 pt-0"></v-select>
+                  <v-select v-model="selectedCuisine" :items="cuisine" label="Cuisine" class="mt-0 pt-0"></v-select>
                 </v-col>
                 <v-col class="12" sm="6" lg="6">
-                  <v-select :items="getTypes()" label="Meal Type" class="mt-0 pt-0"></v-select>
+                  <v-select v-model="selectedType" :items="type" label="Meal Type" class="mt-0 pt-0"></v-select>
                 </v-col>
                 <v-col class="12" sm="6" lg="6">
-                  <v-select :items="getDiets()" label="Diet" class="mt-0 pt-0"></v-select>
+                  <v-select v-model="selectedDiet" :items="diet" label="Diet" class="mt-0 pt-0"></v-select>
                 </v-col>
                 <v-col class="12" sm="6" lg="6">
-                  <v-select :items="getIntolerances()" label="Intolerances" class="mt-0 pt-0"></v-select>
+                  <v-select v-model="selectedIntolerances" :items="intolerance" label="Intolerances" class="mt-0 pt-0"></v-select>
                 </v-col>
               </v-row>
-              <v-form-actions>
-                <v-btn color="primary" class="btnPair">
+              <div>
+                 <v-btn outlined color="primary" class="btnPair" @click="reset">
+                  Reset
+                </v-btn>
+                <v-btn color="primary" class="btnPair" @click="searchRecipes">
                   Search
                 </v-btn>
-              </v-form-actions>
+              </div>
             </v-form>
           </v-card>
         </v-list-item>
@@ -68,30 +71,46 @@
 <script>
 
 import searchOptions from './searchOptions'
+import spoonacularApi from '../../api/spoonacularApi'
 
 export default {
-  name: "Upload",
-  data: {
+  name: "CreateRecipe",
+  data: () => ({
     cuisine: searchOptions.cuisine,
     type: searchOptions.type,
     diet: searchOptions.diet,
     intolerance: searchOptions.intolerance,
-    rules: [v => v.length <= 25 || "Max 25 characters"]
-  },
+    includedIngredients: '',
+    excludedIngredients: '',
+    selectedCuisine: null,
+    selectedType: null,
+    selectedDiet: null,
+    selectedIntolerances: null
+  }),
   components: {
+    searchOptions
   },
   methods: {
-    getCuisines () {
-      return searchOptions.cuisine
+    async searchRecipes () {
+      let params = {}
+      if (this.includedIngredients !== '') {params.includeIngredients = this.includedIngredients}
+      if (this.excludedIngredients !== '') {params.excludeIngredients = this.excludedIngredients}
+      if (this.selectedCuisine) {params.cuisine = this.selectedCuisine}
+      if (this.selectedType) {params.type = this.selectedType}
+      if (this.selectedDiet) {params.diet = this.selectedDiet}
+      if (this.selectedIntolerances) {params.intolerance = this.selectedIntolerances}
+
+      await spoonacularApi.getRecipes(params)
+        .then(response => {
+          console.log(response)
+          // return response
+        })
+        .catch(function (error) {
+          console.error(error)
+        })
     },
-    getTypes () {
-      return searchOptions.type
-    },
-    getDiets () {
-      return searchOptions.diet
-    },
-    getIntolerances () {
-      return searchOptions.intolerance
+    reset () {
+      this.$refs.form.reset()
     }
   }
 }

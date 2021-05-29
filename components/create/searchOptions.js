@@ -56,7 +56,7 @@ export default {
   type: [
     'Main course',
     'Side dish',
-    'Sessert',
+    'Dessert',
     'Appetizer',
     'Salad',
     'Bread',
