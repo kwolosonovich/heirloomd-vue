@@ -74,7 +74,7 @@ import searchOptions from './searchOptions'
 import spoonacularApi from '../../api/spoonacularApi'
 
 export default {
-  name: "CreateRecipe",
+  // name: "Create",
   data: () => ({
     cuisine: searchOptions.cuisine,
     type: searchOptions.type,
