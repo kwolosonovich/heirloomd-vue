@@ -27,7 +27,7 @@ import Inspire from '@/components/inspire.vue'
 import CreateIntro from '@/components/CreateIntro.vue'
 
 export default {
-  name: 'HomePage',
+  name: 'welcome',
   props: {
   },
   components: {

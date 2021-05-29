@@ -14,7 +14,7 @@
           <v-btn outlined color="lightGrey" class="btnPair">
             Examples
           </v-btn>
-          <v-btn color="lightGrey" class="btnPair">
+          <v-btn color="lightGrey" class="btnPair" to="/create">
             Create
           </v-btn>
         </v-card-actions>

@@ -13,7 +13,7 @@
 import Create from '@/components/create/Create'
 
 export default {
-  name: 'CreatePage',
+  name: 'create',
   props: {
   },
   components: {

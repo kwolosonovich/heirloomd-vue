@@ -38,7 +38,7 @@
     </v-app-bar>
     <v-main class="main-style" >
       <v-container class="mt-0 pt-0">
-        <Inspire />
+        <Nuxt />
       </v-container>
     </v-main>
     <v-footer
@@ -53,8 +53,6 @@
 
 <script>
 
-import Inspire from "../pages/inspire"
-
 export default {
   data () {
     return {
@@ -65,7 +63,7 @@ export default {
         {
           icon: 'mdi-apps',
           title: 'Welcome',
-          to: '/inspire'
+          to: '/'
         },
         {
           icon: 'mdi-chart-bubble',
@@ -78,9 +76,6 @@ export default {
       rightDrawer: false,
       title: 'heirloomd'
     }
-  },
-  components: {
-    Inspire
   }
 }
 </script>
