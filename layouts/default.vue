@@ -38,7 +38,7 @@
     </v-app-bar>
     <v-main class="main-style" >
       <v-container class="mt-0 pt-0">
-        <nuxt />
+        <Inspire />
       </v-container>
     </v-main>
     <v-footer
@@ -52,6 +52,8 @@
 </template>
 
 <script>
+
+import Inspire from "../pages/inspire"
 
 export default {
   data () {
@@ -76,6 +78,9 @@ export default {
       rightDrawer: false,
       title: 'heirloomd'
     }
+  },
+  components: {
+    Inspire
   }
 }
 </script>
