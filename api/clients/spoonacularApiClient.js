@@ -1,5 +1,3 @@
-import axios from 'axios';
-
 const spoonacularRootUrl = process.env.spoonacularRootUrl;
 
 const spoonacularApiClient = axios.create({
