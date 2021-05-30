@@ -41,3 +41,15 @@
 .btnPair {
   width: 49%;
 }
+
+/* search results */
+.chipGroup {
+  display: inline-flex;
+  margin: 5px, 0;
+  align-content: left;
+}
+
+.recipeChip {
+  margin: 0, 6px;
+  padding: 20px
+}

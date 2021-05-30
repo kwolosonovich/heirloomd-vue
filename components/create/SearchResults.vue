@@ -12,11 +12,7 @@
           hide-default-footer
         >
           <template v-slot:header>
-            <v-toolbar
-              dark
-              color="accentPink"
-              class="mb-1"
-            >
+            <v-toolbar dark color="accentPink" class="mb-1">
               <v-text-field
                 v-model="search"
                 clearable
@@ -38,31 +34,18 @@
                   label="Sort by"
                 ></v-select>
                 <v-spacer></v-spacer>
-                <v-btn-toggle
-                  v-model="sortDesc"
-                  mandatory
-                >
-                  <v-btn
-                    large
-                    depressed
-                    color="accentRed"
-                    :value="false"
-                  >
+                <v-btn-toggle v-model="sortDesc" mandatory>
+                  <v-btn large depressed color="accentRed" :value="false">
                     <v-icon>mdi-arrow-up</v-icon>
                   </v-btn>
-                  <v-btn
-                    large
-                    depressed
-                    color="accentRed"
-                    :value="true"
-                  >
+                  <v-btn large depressed color="accentRed" :value="true">
                     <v-icon>mdi-arrow-down</v-icon>
                   </v-btn>
                 </v-btn-toggle>
               </template>
             </v-toolbar>
           </template>
-    
+
           <template v-slot:default="props">
             <v-row>
               <v-col
@@ -76,30 +59,50 @@
                 <v-card>
                   <v-card-title class="subheading font-weight-bold">
                     {{ item.title }}
+                    <span class="chipGroup">
+                      <v-chip class="recipeChip caption" v-if="item.veryPopular">Popular</v-chip>
+                      <v-chip class="recipeChip caption">Health Score: {{ item.healthScore }}</v-chip>
+                    </span>
                   </v-card-title>
                   <v-divider></v-divider>
-                  <v-img contain v-bind:src="item.image" />
-
+                    <v-img contain v-bind:src="item.image" />
+                  <span class="chipGroup">
+                    <v-chip class=" caption">{{ item.readyInMinutes }} minutes</v-chip>
+                    <v-chip class="recipeChip">Servings: {{ item.servings }}</v-chip>
+                  </span>
                   <!-- TODO: resolve looping issues for name val  -->
 
                   <!-- item.[0].analyzedInstructions[0].steps[0].ingredients[0].name -->
-                  <!-- <v-card-text 
-                    :v-for="(name, i) in item.analyzedInstructions[0].steps[0].ingredients[0]"
-                    v-bind:item="name"
+                  <!-- options: v-bind:item="name"
                     v-bind:index="i"
                     v-bind:key="name.name" -->
-                  <v-card-text>
-                    Ingredients:  {{ item.analyzedInstructions[0].steps[0].ingredients[0].name }}
+                  <v-card-text
+                    v-for="(ingredients, index) in item.analyzedInstructions[0]
+                      .ingredients"
+                    :key="index"
+                  >
+                    <!--  should be: {{ item.analyzedInstructions[0].steps[0].ingredients[0].name }} -->
+                    Ingredients: {{ ingredients.index.name }}
                   </v-card-text>
-                  <v-card-text>
-                    Ingredients:  {{ item.analyzedInstructions[0].steps[0].ingredients[0].name }}
+                  <!-- <v-card-text>
+                    Steps:  {{ item.analyzedInstructions[0].steps[0] }}
+                  </v-card-text> -->
+
+                  <v-card-text
+                    v-for="step in item.analyzedInstructions[0].steps"
+                    :key="step"
+                  >
+                    {{ step.number }}: {{ step.step }}
                   </v-card-text>
+
                   <v-list dense>
                     <v-list-item
                       v-for="(key, index) in filteredKeys"
                       :key="index"
                     >
-                      <v-list-item-content :class="{ 'blue--text': sortBy === key }">
+                      <v-list-item-content
+                        :class="{ 'blue--text': sortBy === key }"
+                      >
                         {{ key }}:
                       </v-list-item-content>
                       <v-list-item-content
@@ -110,18 +113,19 @@
                       </v-list-item-content>
                     </v-list-item>
                   </v-list>
+                  <v-card-text class="caption">
+                    Visit 
+                    <a :href="item.sourceUrl"> {{ item.sourceName }} </a>
+                    for recipe details
+                  </v-card-text>
                 </v-card>
               </v-col>
             </v-row>
           </template>
-    
+
           <template v-slot:footer>
-            <v-row
-              class="mt-2"
-              align="center"
-              justify="center"
-            >
-              <span class="grey--text">Items per page</span>
+            <v-row class="mt-2" align="center" justify="center">
+              <span class="grey--text caption">Items per page</span>
               <v-menu offset-y>
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn
@@ -146,31 +150,16 @@
                   </v-list-item>
                 </v-list>
               </v-menu>
-    
+
               <v-spacer></v-spacer>
-    
-              <span
-                class="mr-4
-                grey--text"
-              >
+
+              <span class="mr-4 grey--text text-caption">
                 Page {{ page }} of {{ numberOfPages }}
               </span>
-              <v-btn
-                fab
-                dark
-                color="primary"
-                class="mr-1"
-                @click="formerPage"
-              >
+              <v-btn fab dark color="primary" class="mr-1" @click="formerPage">
                 <v-icon>mdi-chevron-left</v-icon>
               </v-btn>
-              <v-btn
-                fab
-                dark
-                color="primary"
-                class="ml-1"
-                @click="nextPage"
-              >
+              <v-btn fab dark color="primary" class="ml-1" @click="nextPage">
                 <v-icon>mdi-chevron-right</v-icon>
               </v-btn>
             </v-row>
@@ -182,44 +171,42 @@
 </template>
 
 <script>
-
 export default {
-
   data: () => ({
     itemsPerPageArray: [4, 8, 12],
-    search: '',
+    search: "",
     filter: {},
     sortDesc: false,
     page: 1,
     itemsPerPage: 4,
-    sortBy: 'title',
-    keys: [
-      'Title',
-      'Name',
-      'Credits',
-    ],
+    sortBy: "title",
+    keys: ["Title"]
   }),
   props: {
     items: Array
   },
   computed: {
-    numberOfPages () {
-      return Math.ceil(this.items.length / this.itemsPerPage)
+    numberOfPages() {
+      return Math.ceil(this.items.length / this.itemsPerPage);
     },
-    filteredKeys () {
-      return this.keys.filter(key => key !== 'Title')
-    },
+    filteredKeys() {
+      return this.keys.filter(key => key !== "Title");
+    }
   },
   methods: {
-    nextPage () {
-      if (this.page + 1 <= this.numberOfPages) this.page += 1
+    nextPage() {
+      if (this.page + 1 <= this.numberOfPages) this.page += 1;
     },
-    formerPage () {
-      if (this.page - 1 >= 1) this.page -= 1
+    formerPage() {
+      if (this.page - 1 >= 1) this.page -= 1;
     },
-    updateItemsPerPage (number) {
-      this.itemsPerPage = number
+    updateItemsPerPage(number) {
+      this.itemsPerPage = number;
     }
   }
-}
+};
 </script>
+
+<style scoped>
+
+</style>

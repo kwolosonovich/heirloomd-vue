@@ -1,5 +1,4 @@
 import spoonacularApiClient from './clients/spoonacularApiClient'
-import axios from 'axios'
 
 const apiKey = process.env.spoonacularAPIKey;
 
