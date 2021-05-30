@@ -1,132 +1,156 @@
 <template>
-  <div id="app">
-    <v-app id="inspire">
-      <v-container fluid class="text-wrap">
-        <v-data-iterator
-          :items="items"
-          :items-per-page.sync="itemsPerPage"
-          :page.sync="page"
-          :search="search"
-          :sort-by="sortBy.toLowerCase()"
-          :sort-desc="sortDesc"
-          hide-default-footer
-        >
-          <template v-slot:header>
-            <v-toolbar dark color="accentPink" class="mb-1">
-              <v-text-field
-                v-model="search"
-                clearable
-                flat
-                solo-inverted
-                hide-details
-                prepend-inner-icon="mdi-magnify"
-                label="Search"
-              ></v-text-field>
-              <v-spacer />              <template v-if="$vuetify.breakpoint.mdAndUp">
-                <v-spacer />                <v-btn-toggle v-model="sortDesc" mandatory>
-                  <v-btn depressed color="accentPink" :value="false">
-                    <v-icon>mdi-arrow-up</v-icon>
-                  </v-btn>
-                  <v-btn depressed color="accentPink" :value="true">
-                    <v-icon>mdi-arrow-down</v-icon>
-                  </v-btn>
-                </v-btn-toggle>
+  <v-app id="inspire">
+    <v-container fluid class="wordWrap text-wrap">
+      <v-data-iterator
+        :items="items"
+        :items-per-page.sync="itemsPerPage"
+        :page.sync="page"
+        :search="search"
+        :sort-by="sortBy.toLowerCase()"
+        :sort-desc="sortDesc"
+        hide-default-footer
+      >
+        <template v-slot:header>
+          <v-toolbar dark rounded color="accentPink" class="mb-2">
+            <v-text-field
+              v-model="search"
+              clearable
+              flat
+              solo-inverted
+              hide-details
+              prepend-inner-icon="mdi-magnify"
+              label="Search"
+            ></v-text-field>
+            <v-spacer />
+            <template v-if="$vuetify.breakpoint.mdAndUp">
+              <v-spacer />
+              <v-btn-toggle v-model="sortDesc" mandatory>
+                <v-btn depressed color="accentPink" :value="false">
+                  <v-icon>mdi-arrow-up</v-icon>
+                </v-btn>
+                <v-btn depressed color="accentPink" :value="true">
+                  <v-icon>mdi-arrow-down</v-icon>
+                </v-btn>
+              </v-btn-toggle>
+            </template>
+          </v-toolbar>
+        </template>
+        <template v-slot:default="props">
+          <v-row>
+            <v-col
+              class="px-1 pb-1 pt-3"
+              v-for="item in props.items"
+              :key="item.title"
+              cols="12"
+              sm="6"
+              md="4"
+              lg="4"
+            >
+              <v-card class="wordWrap">
+                <v-card-text class="wordWrap text-h5" v-text="item.title" />
+                <v-card-text class="chipGroup">
+                  <v-chip
+                    outlined
+                    class="recipeChip caption px-1"
+                    v-if="item.veryPopular"
+                    :key="item.veryPopular"
+                    >Popular</v-chip
+                  >
+                  <v-chip
+                    outlined
+                    class="recipeChip caption px-1"
+                    :key="item.healthScore"
+                    >Health Score: {{ item.healthScore }}</v-chip
+                  >
+                </v-card-text>
+                <v-divider />
+                <v-img contain v-bind:src="item.image" />
+                <v-card-text class="chipGroup">
+                  <v-chip class="recipeChip caption px-1"
+                    >{{ item.readyInMinutes }} minutes</v-chip
+                  >
+                  <v-chip class="recipeChip caption px-1"
+                    >Servings: {{ item.servings }}</v-chip
+                  >
+                </v-card-text>
+                <v-divider />
+                <v-card-subtitle class="mb-0 pb-0">
+                  Directions:
+                </v-card-subtitle>
+                <v-card-text
+                  class="my-1 pb-0"
+                  v-for="step in item.analyzedInstructions[0].steps"
+                  :key="step.step"
+                >
+                  <!-- [0].analyzedInstructions[0].steps[0].step -->
+                  {{ step.number }}. {{ step.step }}
+                </v-card-text>
+                <v-card-subtitle class="mb-0 pb-0">
+                  Ingredients:
+                </v-card-subtitle>
+                <v-card-text class="caption">
+                  Visit
+                  <a :href="item.sourceUrl"> {{ item.sourceName }} </a>
+                  for recipe details
+                </v-card-text>
+              </v-card>
+            </v-col>
+          </v-row>
+        </template>
+        <template v-slot:footer>
+          <v-row class="mt-2" align="center" justify="center">
+            <span class="grey--text caption ml-3">Items per page</span>
+            <v-menu offset-y>
+              <template v-slot:activator="{ on, attrs }">
+                <v-btn
+                  dark
+                  text
+                  color="primary"
+                  class="ml-2"
+                  v-bind="attrs"
+                  v-on="on"
+                >
+                  {{ itemsPerPage }}
+                  <v-icon>mdi-chevron-down</v-icon>
+                </v-btn>
               </template>
-            </v-toolbar>
-          </template>
-
-          <template v-slot:default="props">
-            <v-row>
-              <v-col
-                v-for="item in props.items"
-                :key="item.title"
-                cols="12"
-                sm="6"
-                md="4"
-                lg="3"
-              >
-                <v-card class="wordWrap">
-                  <v-card-title class="wordWrap" v-text="item.title" />
-                  <v-card-text class="chipGroup">
-                    <v-chip outlined class="recipeChip caption px-1" v-if="item.veryPopular" :key="item.veryPopular">Popular</v-chip>
-                    <v-chip outlined class="recipeChip caption px-1" :key="item.healthScore">Health Score: {{ item.healthScore }}</v-chip>
-                  </v-card-text>
-                  <v-divider />
-                    <v-img contain v-bind:src="item.image" />
-                  <v-card-text class="chipGroup">
-                    <v-chip class="recipeChip caption px-1">{{ item.readyInMinutes }} minutes</v-chip>
-                    <v-chip class="recipeChip caption px-1">Servings: {{ item.servings }}</v-chip>
-                  </v-card-text>
-                  <v-divider />
-                  <v-card-subtitle class="mb-0 pb-0">
-                    Directions:
-                  </v-card-subtitle>
-                  <v-card-text
-                    class="my-1 pb-0" 
-                    v-for="step in item.analyzedInstructions[0].steps"
-                    :key="step.step"
-                  >
-                    {{ step.number }}. {{ step.step }}
-                  </v-card-text>
-                  <v-card-subtitle class="mb-0 pb-0">
-                    Ingredients: 
-                  </v-card-subtitle>
-                  <v-card-text class="mb-0 pb-0">
-                    {{ item.analyzedInstructions[0].steps[0].ingredients.name }}...
-                  </v-card-text>
-                  <v-card-text class="caption">
-                    Visit 
-                    <a :href="item.sourceUrl"> {{ item.sourceName }} </a>
-                    for recipe details
-                  </v-card-text>
-                </v-card>
-              </v-col>
-            </v-row>
-          </template>
-
-          <template v-slot:footer>
-            <v-row class="mt-2" align="center" justify="center">
-              <span class="grey--text caption ml-3">Items per page</span>
-              <v-menu offset-y>
-                <template v-slot:activator="{ on, attrs }">
-                  <v-btn
-                    dark
-                    text
-                    color="primary"
-                    class="ml-2"
-                    v-bind="attrs"
-                    v-on="on"
-                  >
-                    {{ itemsPerPage }}
-                    <v-icon>mdi-chevron-down</v-icon>
-                  </v-btn>
-                </template>
-                <v-list>
-                  <v-list-item
-                    v-for="(number, index) in itemsPerPageArray"
-                    :key="index"
-                    @click="updateItemsPerPage(number)"
-                  >
-                    <v-list-item-title>{{ number }}</v-list-item-title>
-                  </v-list-item>
-                </v-list>
-              </v-menu>
-              <v-spacer />              
-              <span class="mr-4 grey--text text-caption">
-                Page {{ page }} of {{ numberOfPages }}
-              </span>
-              <v-btn small fab color="primary" class="mx-1 mb-2" @click="formerPage">
-                <v-icon>mdi-chevron-left</v-icon>
-              </v-btn>
-              <v-btn small fab color="primary" class="mx-1 mb-2 pa-0 ma-0" @click="nextPage">
-                <v-icon>mdi-chevron-right</v-icon>
-              </v-btn>
-            </v-row>
-          </template>
-        </v-data-iterator>
-      </v-container>
-    </v-app>
-  </div>
+              <v-list>
+                <v-list-item
+                  v-for="(number, index) in itemsPerPageArray"
+                  :key="index"
+                  @click="updateItemsPerPage(number)"
+                >
+                  <v-list-item-title>{{ number }}</v-list-item-title>
+                </v-list-item>
+              </v-list>
+            </v-menu>
+            <v-spacer />
+            <span class="mr-4 grey--text text-caption">
+              Page {{ page }} of {{ numberOfPages }}
+            </span>
+            <v-btn
+              small
+              fab
+              color="primary"
+              class="mx-1 mb-2"
+              @click="formerPage"
+            >
+              <v-icon>mdi-chevron-left</v-icon>
+            </v-btn>
+            <v-btn
+              small
+              fab
+              color="primary"
+              class="ml-1 mr-3 mb-2"
+              @click="nextPage"
+            >
+              <v-icon>mdi-chevron-right</v-icon>
+            </v-btn>
+          </v-row>
+        </template>
+      </v-data-iterator>
+    </v-container>
+  </v-app>
 </template>
 
 <script>

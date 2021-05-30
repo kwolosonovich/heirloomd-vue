@@ -24,10 +24,23 @@
 }
 
 /* create */
-.mainCard {
-  max-width: 60%;
+.searchFormCard {
+  width: 60%;
+  max-width: 50%;
+  min-width: 200px;
   border-radius: 20%;
+  margin: auto;
+  padding: 20px
 }
+.searchResultsCard {
+  width: 100%;
+  max-width: 100%;
+  min-width: 200px;
+  border-radius: 20%;
+  margin: auto;
+  padding: 0px
+}
+
 .number {
   height: 20%;
 }

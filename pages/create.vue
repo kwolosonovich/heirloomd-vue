@@ -2,7 +2,7 @@
   <v-row class="ma-10">
     <v-col class="text-center mx-auto">
       <div class="text-h3 font-weight-thin mx-auto">
-        Create a Recipe
+        Get Creative
       </div>
     </v-col>
     <Create />
