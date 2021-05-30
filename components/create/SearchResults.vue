@@ -1,7 +1,7 @@
 <template>
   <div id="app">
     <v-app id="inspire">
-      <v-container fluid>
+      <v-container fluid class="text-wrap">
         <v-data-iterator
           :items="items"
           :items-per-page.sync="itemsPerPage"
@@ -22,23 +22,12 @@
                 prepend-inner-icon="mdi-magnify"
                 label="Search"
               ></v-text-field>
-              <template v-if="$vuetify.breakpoint.mdAndUp">
-                <v-spacer></v-spacer>
-                <v-select
-                  v-model="sortBy"
-                  flat
-                  solo-inverted
-                  hide-details
-                  :items="keys"
-                  prepend-inner-icon="mdi-magnify"
-                  label="Sort by"
-                ></v-select>
-                <v-spacer></v-spacer>
-                <v-btn-toggle v-model="sortDesc" mandatory>
-                  <v-btn large depressed color="accentRed" :value="false">
+              <v-spacer />              <template v-if="$vuetify.breakpoint.mdAndUp">
+                <v-spacer />                <v-btn-toggle v-model="sortDesc" mandatory>
+                  <v-btn depressed color="accentPink" :value="false">
                     <v-icon>mdi-arrow-up</v-icon>
                   </v-btn>
-                  <v-btn large depressed color="accentRed" :value="true">
+                  <v-btn depressed color="accentPink" :value="true">
                     <v-icon>mdi-arrow-down</v-icon>
                   </v-btn>
                 </v-btn-toggle>
@@ -56,63 +45,35 @@
                 md="4"
                 lg="3"
               >
-                <v-card>
-                  <v-card-title class="subheading font-weight-bold">
-                    {{ item.title }}
-                    <span class="chipGroup">
-                      <v-chip class="recipeChip caption" v-if="item.veryPopular">Popular</v-chip>
-                      <v-chip class="recipeChip caption">Health Score: {{ item.healthScore }}</v-chip>
-                    </span>
-                  </v-card-title>
-                  <v-divider></v-divider>
+                <v-card class="wordWrap">
+                  <v-card-title class="wordWrap" v-text="item.title" />
+                  <v-card-text class="chipGroup">
+                    <v-chip outlined class="recipeChip caption px-1" v-if="item.veryPopular" :key="item.veryPopular">Popular</v-chip>
+                    <v-chip outlined class="recipeChip caption px-1" :key="item.healthScore">Health Score: {{ item.healthScore }}</v-chip>
+                  </v-card-text>
+                  <v-divider />
                     <v-img contain v-bind:src="item.image" />
-                  <span class="chipGroup">
-                    <v-chip class=" caption">{{ item.readyInMinutes }} minutes</v-chip>
-                    <v-chip class="recipeChip">Servings: {{ item.servings }}</v-chip>
-                  </span>
-                  <!-- TODO: resolve looping issues for name val  -->
-
-                  <!-- item.[0].analyzedInstructions[0].steps[0].ingredients[0].name -->
-                  <!-- options: v-bind:item="name"
-                    v-bind:index="i"
-                    v-bind:key="name.name" -->
-                  <v-card-text
-                    v-for="(ingredients, index) in item.analyzedInstructions[0]
-                      .ingredients"
-                    :key="index"
-                  >
-                    <!--  should be: {{ item.analyzedInstructions[0].steps[0].ingredients[0].name }} -->
-                    Ingredients: {{ ingredients.index.name }}
+                  <v-card-text class="chipGroup">
+                    <v-chip class="recipeChip caption px-1">{{ item.readyInMinutes }} minutes</v-chip>
+                    <v-chip class="recipeChip caption px-1">Servings: {{ item.servings }}</v-chip>
                   </v-card-text>
-                  <!-- <v-card-text>
-                    Steps:  {{ item.analyzedInstructions[0].steps[0] }}
-                  </v-card-text> -->
-
+                  <v-divider />
+                  <v-card-subtitle class="mb-0 pb-0">
+                    Directions:
+                  </v-card-subtitle>
                   <v-card-text
+                    class="my-1 pb-0" 
                     v-for="step in item.analyzedInstructions[0].steps"
-                    :key="step"
+                    :key="step.step"
                   >
-                    {{ step.number }}: {{ step.step }}
+                    {{ step.number }}. {{ step.step }}
                   </v-card-text>
-
-                  <v-list dense>
-                    <v-list-item
-                      v-for="(key, index) in filteredKeys"
-                      :key="index"
-                    >
-                      <v-list-item-content
-                        :class="{ 'blue--text': sortBy === key }"
-                      >
-                        {{ key }}:
-                      </v-list-item-content>
-                      <v-list-item-content
-                        class="align-end"
-                        :class="{ 'blue--text': sortBy === key }"
-                      >
-                        {{ item[key.toLowerCase()] }}
-                      </v-list-item-content>
-                    </v-list-item>
-                  </v-list>
+                  <v-card-subtitle class="mb-0 pb-0">
+                    Ingredients: 
+                  </v-card-subtitle>
+                  <v-card-text class="mb-0 pb-0">
+                    {{ item.analyzedInstructions[0].steps[0].ingredients.name }}...
+                  </v-card-text>
                   <v-card-text class="caption">
                     Visit 
                     <a :href="item.sourceUrl"> {{ item.sourceName }} </a>
@@ -125,7 +86,7 @@
 
           <template v-slot:footer>
             <v-row class="mt-2" align="center" justify="center">
-              <span class="grey--text caption">Items per page</span>
+              <span class="grey--text caption ml-3">Items per page</span>
               <v-menu offset-y>
                 <template v-slot:activator="{ on, attrs }">
                   <v-btn
@@ -150,16 +111,14 @@
                   </v-list-item>
                 </v-list>
               </v-menu>
-
-              <v-spacer></v-spacer>
-
+              <v-spacer />              
               <span class="mr-4 grey--text text-caption">
                 Page {{ page }} of {{ numberOfPages }}
               </span>
-              <v-btn fab dark color="primary" class="mr-1" @click="formerPage">
+              <v-btn small fab color="primary" class="mx-1 mb-2" @click="formerPage">
                 <v-icon>mdi-chevron-left</v-icon>
               </v-btn>
-              <v-btn fab dark color="primary" class="ml-1" @click="nextPage">
+              <v-btn small fab color="primary" class="mx-1 mb-2 pa-0 ma-0" @click="nextPage">
                 <v-icon>mdi-chevron-right</v-icon>
               </v-btn>
             </v-row>
@@ -173,12 +132,12 @@
 <script>
 export default {
   data: () => ({
-    itemsPerPageArray: [4, 8, 12],
+    itemsPerPageArray: [3, 9, 12],
     search: "",
     filter: {},
     sortDesc: false,
     page: 1,
-    itemsPerPage: 4,
+    itemsPerPage: 3,
     sortBy: "title",
     keys: ["Title"]
   }),
@@ -206,7 +165,3 @@ export default {
   }
 };
 </script>
-
-<style scoped>
-
-</style>
