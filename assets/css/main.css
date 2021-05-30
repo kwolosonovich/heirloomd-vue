@@ -31,6 +31,12 @@
   height: 20%;
 }
 
+.titleCard {
+  background-color: lightGrey;
+  color: lightGrey
+
+}
+
 /* buttons */
 .btnPair {
   width: 49%;

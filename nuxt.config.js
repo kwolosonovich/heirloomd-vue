@@ -49,7 +49,6 @@ export default {
       themes: {
         light: {
           primary: '#3a7d44',
-          accentYellow: '#ffb01f',
           accentPink: '#E37978',
           accentYellow: '#ffb833',
           accentRed: '#661615',
