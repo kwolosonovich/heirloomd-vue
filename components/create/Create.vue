@@ -104,7 +104,6 @@ import spoonacularApi from "../../api/spoonacularApi";
 import SearchResults from "./SearchResults.vue";
 
 export default {
-  // name: "Create",
   data: () => ({
     cuisine: searchOptions.cuisine,
     type: searchOptions.type,

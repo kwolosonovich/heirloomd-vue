@@ -60,6 +60,7 @@
                     outlined
                     class="recipeChip caption px-1"
                     :key="item.healthScore"
+                    :v-if="item.healthScore"
                     >Health Score: {{ item.healthScore }}</v-chip
                   >
                 </v-card-text>
@@ -81,13 +82,10 @@
                   class="my-1 pb-0"
                   v-for="step in item.analyzedInstructions[0].steps"
                   :key="step.step"
+                  :v-if="step.step"
                 >
-                  <!-- [0].analyzedInstructions[0].steps[0].step -->
                   {{ step.number }}. {{ step.step }}
                 </v-card-text>
-                <v-card-subtitle class="mb-0 pb-0">
-                  Ingredients:
-                </v-card-subtitle>
                 <v-card-text class="caption">
                   Visit
                   <a :href="item.sourceUrl"> {{ item.sourceName }} </a>
