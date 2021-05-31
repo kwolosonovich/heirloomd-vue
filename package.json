@@ -12,6 +12,7 @@
     "heroku-cleanup": "echo This runs after Heroku prunes and caches dependencies."
   },
   "dependencies": {
+    "@nuxtjs/axios": "^5.13.5",
     "core-js": "^3.9.1",
     "heroku": "^7.53.1",
     "nuxt": "^2.15.3"
