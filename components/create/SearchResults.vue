@@ -39,8 +39,9 @@
           <v-row>
             <v-col
               class="px-1 pb-1 pt-3"
-              v-for="item in props.items"
+              v-for="(item, index) in props.items"
               :key="item.title"
+              :index="index"
               cols="12"
               sm="6"
               md="4"
@@ -48,6 +49,14 @@
             >
               <v-card class="wordWrap">
                 <v-card-text class="wordWrap text-h5" v-text="item.title" />
+                  <v-checkbox
+                    :v-model="favorite"
+                    :key="item.title"
+                    :index="index"
+                    off-icon="mdi-star-plus-outline"
+                    on-icon="mdi-star"
+                    @change="addFavorite(item, index)"
+                  ></v-checkbox>
                 <v-card-text class="chipGroup">
                   <v-chip
                     outlined
@@ -161,7 +170,9 @@ export default {
     page: 1,
     itemsPerPage: 3,
     sortBy: "title",
-    keys: ["Title"]
+    keys: ["Title"],
+    favorite: false,
+    favoritesArr: {type: Array, value: []}
   }),
   props: {
     items: Array
@@ -172,6 +183,9 @@ export default {
     },
     filteredKeys() {
       return this.keys.filter(key => key !== "Title");
+    },
+    addfavorite() {
+      console.log('favorite')
     }
   },
   methods: {
@@ -183,6 +197,59 @@ export default {
     },
     updateItemsPerPage(number) {
       this.itemsPerPage = number;
+    },
+    addFavorite(item) {
+    console.log(this.favoritesArr.value.length)
+
+    console.log(this.favoritesArr.value.length)
+
+      if (this.favoritesArr.value.length = 0) {
+        this.favoritesArr.value.push(item)
+      } else {
+        for (item in this.favoritesArr) {
+          let index = this.favoritesArr.indexOf(favoritesArr[item].title)
+          console.log(index)
+          // if (this.favoritesArr.indexOf(favoritesArr[item].title) !== -1) {
+          //   this.favoritesArr.push(item)
+          // } else {}
+        }
+      }
+      console.log(this.favoritesArr)
+
+      // this.favorite === true ? this.favoritesArr.push(item) : this.favoritesArr.indexOf(this.favoritesArr.find(id  => id === item.id)) = -1
+
+      // if (this.favorite === true) {
+      //   this.favoritesArr.push(item)
+      //   console.log(this.favoritesArr)
+      // } else {
+      //   this.favoritesArr.filter(function(favoritesArr, item) {
+      //     let index = favoritesArr.indexOf(item)
+      //     console.log(index)
+      //   })
+      //         console.log(this.favoritesArr)
+
+      //   this.favoritesArr.filter(function(item) {
+      //   item.id = item.id
+      //   console.log(item.id, item.index)
+      //   console.log(this.favoritesArr.indexOf(item.id))
+      //   // indexOf(item) = -1
+      //   // console.log(favoritesArr.indexOf(item))
+      //   })
+        // this.favoritesArr.indexOf(item) = -1
+// console.log(this.favoritesArr.length)
+      // }
+      
+      // console.log(this.favoritesArr.length)
+        // let findItem = this.favoritesArr.find(id  => id === item.id)
+        // this.favoritesArr.indexOf(this.favoritesArr.find(id  => id === item.id)) = -1
+      
+
+      // let removeItem = (favoritesArr, item) => {
+        // favoritesArr.indexOf(favoritesArr.find(id  => id === item.id)) = -1
+        // this.favoritesArr.indexOf(remove) = -1
+        // console.log(this.favoritesArr)
+        // return favoritesArr
+      // }
     }
   }
 };
