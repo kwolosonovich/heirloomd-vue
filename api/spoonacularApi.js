@@ -7,7 +7,7 @@ export default {
     params.apiKey = apiKey
     params.instructionsRequired = true
     params.addRecipeInformation = true
-    params.number = 20
+    params.number = 2
     return spoonacularApiClient.request({
       method: 'get',
       url: '/recipes/complexSearch',

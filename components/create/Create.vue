@@ -117,7 +117,7 @@ export default {
     selectedIntolerances: null,
     searchResultsArr: null,
     showSearchResults: false,
-    dev: false,
+    dev: true,
     devRes: [
       {
         vegetarian: true,
@@ -138,7 +138,7 @@ export default {
         license: "CC BY-SA 3.0",
         sourceName: "Full Belly Sisters",
         pricePerServing: 112.39,
-        id: 716426,
+        id: 716455,
         title: "Cauliflower, Brown Rice, and Vegetable Fried Rice",
         readyInMinutes: 30,
         servings: 8,
@@ -474,7 +474,6 @@ export default {
           .getRecipes(params)
           .then(response => {
             console.log(response.data.results);
-            // pass results to search component and show component
             this.searchResultsArr = response.data.results;
             this.showSearchResults = true;
           })
