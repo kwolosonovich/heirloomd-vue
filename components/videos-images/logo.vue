@@ -8,11 +8,12 @@
 
 <style>
 .VuetifyLogo {
-  height: auto;
-  max-width: 400px;
-  min-width: 300px;
+  width: auto;
+  max-height: 400px;
+  min-height: 300px;
   padding: 0;
-  margin: 0;
-  z-index: -3
+  margin-top: -4rem;
+  margin-bottom: -7rem;
+  z-index: -1;
 }
 </style>

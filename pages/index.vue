@@ -1,17 +1,20 @@
 <template>
   <span>
     <v-row
-      justify="center" 
+      justify="center"
       no-gutters
       class="d-flex flex-wrap-reverse mx-auto"
     >
-      <v-col cols="12" lg="4" md="3" class="text-center mx-auto my-auto">
-        <div class="text-h3 font-weight-thin">Create.
-          <v-spacer class="mb-3"/> Share.
+      <v-col cols="12" lg="6" sm="6" 
+        class="text-center mx-auto my-auto" 
+        style="z-index: 1"
+      >
+        <div class="text-h3 font-weight-thin ma-10">Search.
           <v-spacer class="mb-3"/> Enjoy.
+          <v-spacer class="mb-3"/> Share.
         </div>
       </v-col>
-      <v-col cols="12" lg="8" md="9" class="text-center">
+      <v-col cols="12" lg="6" sm="6" class="text-center">
         <logo />
       </v-col>
     </v-row>

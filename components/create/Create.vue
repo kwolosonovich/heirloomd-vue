@@ -87,14 +87,14 @@
         key="search"
       />
     </v-card>
-    <v-card flat class="mx-auto mt-10 lightGrey">
+    <!-- <v-card flat class="mx-auto mt-10 lightGrey">
       <v-card-title>
         <v-img style="width: 12%; max-width: 80px" src="/3.png" />
         <v-btn class="white text-h6 ml-6 font-weight-thin mx-auto">
           Add to Gallery
         </v-btn>
       </v-card-title>
-    </v-card>
+    </v-card> -->
   </v-container>
 </template>
 

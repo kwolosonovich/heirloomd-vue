@@ -49,14 +49,14 @@
             >
               <v-card class="wordWrap">
                 <v-card-text class="wordWrap text-h5" v-text="item.title" />
-                  <v-checkbox
+                  <!-- <v-checkbox
                     :v-model="favorite"
                     :key="item.title"
                     :index="index"
                     off-icon="mdi-star-plus-outline"
                     on-icon="mdi-star"
-                    @change="addFavorite(item, index)"
-                  ></v-checkbox>
+                    @change="addFavorite(item)"
+                  ></v-checkbox> -->
                 <v-card-text class="chipGroup">
                   <v-chip
                     outlined
@@ -198,23 +198,21 @@ export default {
     updateItemsPerPage(number) {
       this.itemsPerPage = number;
     },
-    addFavorite(item) {
-    console.log(this.favoritesArr.value.length)
+    // addFavorite(item) {
+    // console.log(this.favoritesArr.value.length)
 
-    console.log(this.favoritesArr.value.length)
-
-      if (this.favoritesArr.value.length = 0) {
-        this.favoritesArr.value.push(item)
-      } else {
-        for (item in this.favoritesArr) {
-          let index = this.favoritesArr.indexOf(favoritesArr[item].title)
-          console.log(index)
-          // if (this.favoritesArr.indexOf(favoritesArr[item].title) !== -1) {
-          //   this.favoritesArr.push(item)
-          // } else {}
-        }
-      }
-      console.log(this.favoritesArr)
+    //   if (this.favoritesArr.value.length = 0) {
+    //     this.favoritesArr.value.push(item)
+    //   } else {
+    //     for (item in this.favoritesArr) {
+    //       let index = this.favoritesArr.indexOf(favoritesArr[item].title)
+    //       console.log(index)
+    //       // if (this.favoritesArr.indexOf(favoritesArr[item].title) !== -1) {
+    //       //   this.favoritesArr.push(item)
+    //       // } else {}
+    //     }
+    //   }
+    //   console.log(this.favoritesArr)
 
       // this.favorite === true ? this.favoritesArr.push(item) : this.favoritesArr.indexOf(this.favoritesArr.find(id  => id === item.id)) = -1
 
@@ -233,10 +231,8 @@ export default {
       //   console.log(item.id, item.index)
       //   console.log(this.favoritesArr.indexOf(item.id))
       //   // indexOf(item) = -1
-      //   // console.log(favoritesArr.indexOf(item))
       //   })
         // this.favoritesArr.indexOf(item) = -1
-// console.log(this.favoritesArr.length)
       // }
       
       // console.log(this.favoritesArr.length)
@@ -250,7 +246,7 @@ export default {
         // console.log(this.favoritesArr)
         // return favoritesArr
       // }
-    }
+    // }
   }
 };
 </script>
