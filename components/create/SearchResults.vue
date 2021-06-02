@@ -49,14 +49,14 @@
             >
               <v-card class="wordWrap">
                 <v-card-text class="wordWrap text-h5" v-text="item.title" />
-                  <!-- <v-checkbox
+                  <v-checkbox
                     :v-model="favorite"
                     :key="item.title"
                     :index="index"
                     off-icon="mdi-star-plus-outline"
                     on-icon="mdi-star"
                     @change="addFavorite(item)"
-                  ></v-checkbox> -->
+                  ></v-checkbox>
                 <v-card-text class="chipGroup">
                   <v-chip
                     outlined
@@ -198,21 +198,28 @@ export default {
     updateItemsPerPage(number) {
       this.itemsPerPage = number;
     },
-    // addFavorite(item) {
-    // console.log(this.favoritesArr.value.length)
+    addFavorite(item) {
 
-    //   if (this.favoritesArr.value.length = 0) {
-    //     this.favoritesArr.value.push(item)
-    //   } else {
-    //     for (item in this.favoritesArr) {
-    //       let index = this.favoritesArr.indexOf(favoritesArr[item].title)
-    //       console.log(index)
-    //       // if (this.favoritesArr.indexOf(favoritesArr[item].title) !== -1) {
-    //       //   this.favoritesArr.push(item)
-    //       // } else {}
-    //     }
-    //   }
-    //   console.log(this.favoritesArr)
+    // Search favorite array by "id" and "title"
+    let isItemFound = this.favoritesArr.value.find(element => element.id === item.id && element.title === item.title);
+
+    if(isItemFound) {
+
+      // Favorite item was found this means user wants to unfavorite. Remove item using the filter method.
+      this.favoritesArr.value = this.favoritesArr.value.filter(element => element.id !== item.id && element.title !== item.title);
+
+    } else {
+
+      // New item detected. Add to favorites array.
+      this.favoritesArr.value.push(item);
+
+    }
+
+    console.log("favorite items")
+    console.table(this.favoritesArr.value);
+
+
+      // console.log(this.favoritesArr)
 
       // this.favorite === true ? this.favoritesArr.push(item) : this.favoritesArr.indexOf(this.favoritesArr.find(id  => id === item.id)) = -1
 
@@ -232,21 +239,21 @@ export default {
       //   console.log(this.favoritesArr.indexOf(item.id))
       //   // indexOf(item) = -1
       //   })
-        // this.favoritesArr.indexOf(item) = -1
+      //   this.favoritesArr.indexOf(item) = -1
       // }
       
       // console.log(this.favoritesArr.length)
-        // let findItem = this.favoritesArr.find(id  => id === item.id)
-        // this.favoritesArr.indexOf(this.favoritesArr.find(id  => id === item.id)) = -1
+      //   let findItem = this.favoritesArr.find(id  => id === item.id)
+      //   this.favoritesArr.indexOf(this.favoritesArr.find(id  => id === item.id)) = -1
       
 
       // let removeItem = (favoritesArr, item) => {
-        // favoritesArr.indexOf(favoritesArr.find(id  => id === item.id)) = -1
-        // this.favoritesArr.indexOf(remove) = -1
-        // console.log(this.favoritesArr)
-        // return favoritesArr
+      //   favoritesArr.indexOf(favoritesArr.find(id  => id === item.id)) = -1
+      //   this.favoritesArr.indexOf(remove) = -1
+      //   console.log(this.favoritesArr)
+      //   return favoritesArr
       // }
-    // }
+    }
   }
 };
 </script>
