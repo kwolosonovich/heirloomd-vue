@@ -117,7 +117,7 @@ export default {
     selectedIntolerances: null,
     searchResultsArr: null,
     showSearchResults: false,
-    dev: true,
+    dev: false,
     devRes: [
       {
         vegetarian: true,

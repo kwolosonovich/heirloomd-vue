@@ -201,6 +201,7 @@ export default {
     addFavorite(item) {
 
     // Search favorite array by "id" and "title"
+
     let isItemFound = this.favoritesArr.value.find(element => element.id === item.id && element.title === item.title);
 
     if(isItemFound) {
@@ -209,50 +210,15 @@ export default {
       this.favoritesArr.value = this.favoritesArr.value.filter(element => element.id !== item.id && element.title !== item.title);
 
     } else {
-
       // New item detected. Add to favorites array.
       this.favoritesArr.value.push(item);
 
     }
 
-    console.log("favorite items")
-    console.table(this.favoritesArr.value);
-
-
-      // console.log(this.favoritesArr)
-
-      // this.favorite === true ? this.favoritesArr.push(item) : this.favoritesArr.indexOf(this.favoritesArr.find(id  => id === item.id)) = -1
-
-      // if (this.favorite === true) {
-      //   this.favoritesArr.push(item)
-      //   console.log(this.favoritesArr)
-      // } else {
-      //   this.favoritesArr.filter(function(favoritesArr, item) {
-      //     let index = favoritesArr.indexOf(item)
-      //     console.log(index)
-      //   })
-      //         console.log(this.favoritesArr)
-
-      //   this.favoritesArr.filter(function(item) {
-      //   item.id = item.id
-      //   console.log(item.id, item.index)
-      //   console.log(this.favoritesArr.indexOf(item.id))
-      //   // indexOf(item) = -1
-      //   })
-      //   this.favoritesArr.indexOf(item) = -1
-      // }
-      
-      // console.log(this.favoritesArr.length)
-      //   let findItem = this.favoritesArr.find(id  => id === item.id)
-      //   this.favoritesArr.indexOf(this.favoritesArr.find(id  => id === item.id)) = -1
-      
-
-      // let removeItem = (favoritesArr, item) => {
-      //   favoritesArr.indexOf(favoritesArr.find(id  => id === item.id)) = -1
-      //   this.favoritesArr.indexOf(remove) = -1
-      //   console.log(this.favoritesArr)
-      //   return favoritesArr
-      // }
+    // TODO: for favorites gallery
+    // let getLocal =  JSON.parse(localStorage.getItem('favorite')) || [];
+    // console.log(getLocal)
+    // localStorage.setItem('favorite', JSON.stringify(this.favoritesArr.value))
     }
   }
 };
